@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SecuredPaper index{% endblock %}
+
+{% block body %}
+    <h1>SecuredPaper index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Secured_paper_type</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for secured_paper in secured_papers %}
+            <tr>
+                <td>{{ secured_paper.id }}</td>
+                <td>{{ secured_paper.name }}</td>
+                <td>{{ secured_paper.securedPaperType }}</td>
+                <td>
+                    <a href="{{ path('app_secured_paper_show', {'id': secured_paper.id}) }}">show</a>
+                    <a href="{{ path('app_secured_paper_edit', {'id': secured_paper.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_secured_paper_new') }}">Create new</a>
+{% endblock %}
